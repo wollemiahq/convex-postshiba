@@ -1,0 +1,105 @@
+{
+  "name": "@cavuno/convex-postshiba",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A Convex component for durable, rate limited transactional email delivery through PostShiba.",
+  "keywords": [
+    "convex",
+    "convex-component",
+    "email",
+    "postshiba",
+    "transactional-email",
+    "webhooks"
+  ],
+  "homepage": "https://github.com/wollemiahq/convex-postshiba#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wollemiahq/convex-postshiba.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wollemiahq/convex-postshiba/issues",
+    "email": "hi@cavuno.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Cavuno",
+    "email": "hi@cavuno.com",
+    "url": "https://cavuno.com"
+  },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "type": "module",
+  "main": "./src/client/index.ts",
+  "module": "./src/client/index.ts",
+  "types": "./src/client/index.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/client/index.ts",
+    "./http": "./src/http/index.ts",
+    "./test": "./src/test.ts",
+    "./_generated/component.js": "./src/component/_generated/component.ts",
+    "./convex.config": "./src/component/convex.config.ts",
+    "./convex.config.js": "./src/component/convex.config.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "types": "./dist/client/index.d.ts",
+        "default": "./dist/client/index.js"
+      },
+      "./http": {
+        "types": "./dist/http/index.d.ts",
+        "default": "./dist/http/index.js"
+      },
+      "./test": "./src/test.ts",
+      "./_generated/component.js": {
+        "types": "./dist/component/_generated/component.d.ts"
+      },
+      "./convex.config": {
+        "types": "./dist/component/convex.config.d.ts",
+        "default": "./dist/component/convex.config.js"
+      },
+      "./convex.config.js": {
+        "types": "./dist/component/convex.config.d.ts",
+        "default": "./dist/component/convex.config.js"
+      }
+    },
+    "main": "./dist/client/index.js",
+    "module": "./dist/client/index.js",
+    "types": "./dist/client/index.d.ts"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc --project ./tsconfig.build.json",
+    "build:codegen": "convex codegen --component-dir ./src/component && pnpm run build",
+    "clean": "rm -rf dist node_modules/.cache *.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@convex-dev/rate-limiter": "^0.3.2",
+    "@convex-dev/workpool": "^0.4.10"
+  },
+  "devDependencies": {
+    "@edge-runtime/vm": "^5.0.0",
+    "convex": "^1.45.0",
+    "convex-helpers": "^0.1.123",
+    "convex-test": "^0.0.56",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  },
+  "peerDependencies": {
+    "convex": "^1.44.0",
+    "convex-helpers": "^0.1.123"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
